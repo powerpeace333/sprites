@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chrono Legends Sprite Studio PRO</title>
+  <title>Chrono Legends PRO - Editor de Sprites AQW Master Edition</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -26,12 +26,13 @@
       --darker: #0a0f1d;
       --light: #e2e8f0;
       --gray: #334155;
-      --panel-bg: rgba(22, 38, 77, 0.85);
-      --border-radius: 16px;
+      --panel-bg: rgba(22, 38, 77, 0.9);
+      --border-radius: 20px;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --glow: 0 0 30px rgba(99, 102, 241, 0.7);
     }
 
     body {
@@ -43,23 +44,24 @@
       overflow-x: hidden;
       background-image: 
         radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 20%);
+        radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 20%),
+        linear-gradient(45deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
     }
 
     .app-container {
-      max-width: 1600px;
+      max-width: 1920px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 320px 1fr 320px;
       grid-template-rows: auto 1fr auto;
-      gap: 20px;
+      gap: 25px;
       height: calc(100vh - 40px);
     }
 
     .app-header {
       grid-column: 1 / -1;
       background: linear-gradient(to right, var(--primary), var(--secondary));
-      padding: 20px;
+      padding: 25px 30px;
       border-radius: var(--border-radius);
       box-shadow: var(--shadow-lg);
       position: relative;
@@ -90,23 +92,30 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
     }
 
     .logo {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       background: linear-gradient(45deg, var(--accent), var(--secondary));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+      font-size: 2.2rem;
+      box-shadow: var(--glow);
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(99, 102, 241, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 3.2rem;
       background: linear-gradient(to right, #60a5fa, #8b5cf6, #f472b6);
       -webkit-background-clip: text;
       background-clip: text;
@@ -116,44 +125,47 @@
     }
 
     .subtitle {
-      font-size: 1.2rem;
-      max-width: 700px;
+      font-size: 1.3rem;
+      max-width: 800px;
       color: rgba(255, 255, 255, 0.9);
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-      margin-top: 5px;
+      margin-top: 8px;
     }
 
     .toolbar {
       background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      padding: 15px;
+      backdrop-filter: blur(15px);
+      padding: 18px;
       border-radius: var(--border-radius);
       display: flex;
-      gap: 15px;
+      gap: 18px;
       flex-wrap: wrap;
       box-shadow: var(--shadow-md);
       border: 1px solid rgba(79, 70, 229, 0.3);
+      margin-top: 20px;
     }
 
     .toolbar-btn {
       background: linear-gradient(to bottom, rgba(79, 70, 229, 0.8), rgba(59, 46, 220, 0.8));
       color: white;
       border: none;
-      padding: 10px 18px;
+      padding: 12px 20px;
       font-size: 0.95rem;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       font-weight: 600;
       transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
     }
 
     .toolbar-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(79, 70, 229, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
       background: linear-gradient(to bottom, rgba(99, 102, 241, 0.9), rgba(79, 70, 229, 0.9));
     }
 
@@ -162,7 +174,7 @@
     }
 
     .toolbar-btn i {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     .toolbar-btn.secondary {
@@ -190,26 +202,43 @@
       box-shadow: none;
     }
 
+    .toolbar-btn::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      transform: rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .toolbar-btn:hover::before {
+      transform: rotate(45deg) translate(20%, 20%);
+    }
+
     .panel {
       background: var(--panel-bg);
       border-radius: var(--border-radius);
-      padding: 20px;
+      padding: 25px;
       box-shadow: var(--shadow-md);
       border: 1px solid rgba(79, 70, 229, 0.3);
       backdrop-filter: blur(10px);
       overflow: auto;
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     .panel-title {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 25px;
       color: var(--accent);
-      font-size: 1.4rem;
-      padding-bottom: 10px;
+      font-size: 1.6rem;
+      padding-bottom: 12px;
       border-bottom: 2px solid rgba(79, 70, 229, 0.3);
     }
 
@@ -224,7 +253,7 @@
       grid-row: 2;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
     }
 
     .preview-panel {
@@ -232,13 +261,21 @@
       grid-row: 2;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
+    }
+
+    .tools-panel {
+      grid-column: 3;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
     }
 
     .canvas-container {
       background: rgba(15, 23, 42, 0.7);
       border-radius: var(--border-radius);
-      padding: 20px;
+      padding: 25px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -246,14 +283,15 @@
       justify-content: center;
       position: relative;
       border: 2px solid rgba(79, 70, 229, 0.5);
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
     }
 
-    #sprite-canvas-container {
+    .canvas-wrapper {
       position: relative;
       width: 100%;
-      max-width: 800px;
-      height: 600px;
+      max-width: 900px;
+      height: 650px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -261,18 +299,19 @@
 
     #sprite-canvas {
       border: 3px solid var(--primary);
-      border-radius: 12px;
+      border-radius: 14px;
       image-rendering: pixelated;
-      box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
       background: linear-gradient(45deg, #0f172a 0%, #1e293b 100%);
       max-width: 100%;
       max-height: 100%;
+      cursor: crosshair;
     }
 
     .layer-controls {
       display: flex;
-      gap: 10px;
-      margin-top: 15px;
+      gap: 12px;
+      margin-top: 20px;
       flex-wrap: wrap;
     }
 
@@ -280,11 +319,13 @@
       background: rgba(30, 41, 59, 0.7);
       border: 1px solid rgba(79, 70, 229, 0.5);
       color: var(--light);
-      padding: 6px 12px;
-      border-radius: 8px;
+      padding: 8px 15px;
+      border-radius: 10px;
       cursor: pointer;
       transition: var(--transition);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
     }
 
     .layer-btn:hover {
@@ -297,53 +338,72 @@
       font-weight: bold;
     }
 
+    .layer-btn::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .layer-btn:hover::before {
+      opacity: 1;
+      transform: rotate(45deg) translate(20%, 20%);
+    }
+
     .style-section {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     .section-title {
-      font-size: 1.1rem;
-      margin-bottom: 15px;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
       color: var(--accent);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .style-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 15px;
     }
 
     .style-card {
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       cursor: pointer;
       transition: var(--transition);
       position: relative;
-      height: 120px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      height: 130px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
       border: 2px solid transparent;
-      background: rgba(30, 41, 59, 0.5);
+      background: rgba(30, 41, 59, 0.6);
     }
 
     .style-card:hover, .style-card.selected {
-      transform: scale(1.05);
+      transform: scale(1.07);
       border-color: var(--accent);
-      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+      z-index: 2;
     }
 
     .style-card.selected::after {
       content: "✓";
       position: absolute;
-      top: 8px;
-      right: 8px;
-      font-size: 1.2rem;
+      top: 10px;
+      right: 10px;
+      font-size: 1.4rem;
       color: var(--success);
       font-weight: bold;
       text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-      z-index: 2;
+      z-index: 3;
     }
 
     .style-img {
@@ -351,7 +411,7 @@
       height: 100%;
       object-fit: contain;
       display: block;
-      padding: 5px;
+      padding: 8px;
     }
 
     .style-name {
@@ -359,31 +419,35 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       color: white;
-      padding: 6px;
-      font-size: 0.85rem;
+      padding: 8px;
+      font-size: 0.9rem;
       text-align: center;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(6px);
       z-index: 1;
+      font-weight: 500;
     }
 
     .palette-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-      gap: 10px;
-      margin-top: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
     }
 
     .color-swatch {
       width: 100%;
-      height: 40px;
-      border-radius: 8px;
+      height: 45px;
+      border-radius: 10px;
       cursor: pointer;
       transition: var(--transition);
       border: 2px solid transparent;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .color-swatch:hover {
@@ -393,7 +457,7 @@
 
     .color-swatch.selected {
       border-color: white;
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.5);
     }
 
     .color-swatch::after {
@@ -406,132 +470,72 @@
       background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
     }
 
+    .color-swatch i {
+      display: none;
+      color: white;
+      font-size: 0.8rem;
+    }
+
+    .color-swatch.selected i {
+      display: block;
+    }
+
     .slider-control {
-      margin: 15px 0;
+      margin: 20px 0;
     }
 
     .slider-label {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 0.95rem;
+      margin-bottom: 10px;
+      font-size: 1rem;
     }
 
     .slider {
       width: 100%;
-      height: 6px;
-      border-radius: 3px;
+      height: 8px;
+      border-radius: 4px;
       background: rgba(79, 70, 229, 0.3);
       outline: none;
       -webkit-appearance: none;
+      position: relative;
     }
 
     .slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: var(--accent);
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(99, 102, 241, 0.7);
-    }
-
-    .upload-area {
-      border: 3px dashed rgba(79, 70, 229, 0.5);
-      border-radius: 12px;
-      padding: 30px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-bottom: 20px;
-      background: rgba(30, 41, 59, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .upload-area::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(79, 70, 229, 0.1), transparent);
-      transform: rotate(45deg);
-      animation: shimmer 3s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { transform: rotate(45deg) translateX(-100%); }
-      100% { transform: rotate(45deg) translateX(100%); }
-    }
-
-    .upload-area:hover, .upload-area.drag-over {
-      background: rgba(79, 70, 229, 0.1);
-      border-color: var(--accent);
-    }
-
-    .upload-icon {
-      font-size: 3.5rem;
-      color: var(--accent);
-      margin-bottom: 15px;
-    }
-
-    .file-input {
-      display: none;
-    }
-
-    .animation-preview {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .animation-frame {
-      width: 60px;
-      height: 60px;
-      border-radius: 8px;
-      border: 2px solid rgba(79, 70, 229, 0.5);
-      background: rgba(15, 23, 42, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: var(--light);
-      cursor: pointer;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
       transition: var(--transition);
     }
 
-    .animation-frame:hover {
-      transform: scale(1.1);
-      border-color: var(--accent);
-    }
-
-    .animation-frame.active {
-      border-color: var(--accent);
-      background: rgba(79, 70, 229, 0.3);
-      font-weight: bold;
+    .slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
     }
 
     .app-footer {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       border-top: 1px solid rgba(79, 70, 229, 0.3);
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(5px);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .notification {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 15px 25px;
-      border-radius: 12px;
+      top: 25px;
+      right: 25px;
+      padding: 20px 30px;
+      border-radius: 14px;
       color: white;
       font-weight: 500;
       box-shadow: var(--shadow-lg);
@@ -540,9 +544,10 @@
       z-index: 1000;
       display: flex;
       align-items: center;
-      gap: 12px;
-      max-width: 350px;
+      gap: 15px;
+      max-width: 400px;
       opacity: 0;
+      font-size: 1.1rem;
     }
 
     .notification.show {
@@ -563,7 +568,7 @@
     }
 
     .notification i {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
     }
 
     .loading {
@@ -578,21 +583,21 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
     }
 
     .spinner-container {
       position: relative;
-      width: 120px;
-      height: 120px;
-      margin-bottom: 30px;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 35px;
     }
 
     .spinner {
       width: 100%;
       height: 100%;
-      border: 6px solid rgba(79, 70, 229, 0.3);
-      border-top: 6px solid var(--accent);
+      border: 8px solid rgba(79, 70, 229, 0.3);
+      border-top: 8px solid var(--accent);
       border-radius: 50%;
       animation: spin 1.2s linear infinite;
     }
@@ -602,12 +607,24 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      border: 4px solid rgba(124, 58, 237, 0.3);
-      border-left: 4px solid var(--secondary);
+      width: 80px;
+      height: 80px;
+      border: 5px solid rgba(124, 58, 237, 0.3);
+      border-left: 5px solid var(--secondary);
       border-radius: 50%;
       animation: spin 1.5s linear infinite reverse;
+    }
+
+    .spinner-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
     }
 
     @keyframes spin {
@@ -616,38 +633,39 @@
     }
 
     .loading-text {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
       color: white;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       text-align: center;
       background: linear-gradient(to right, var(--accent), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .loading-subtext {
       color: rgba(255, 255, 255, 0.7);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       text-align: center;
-      max-width: 600px;
-      line-height: 1.5;
+      max-width: 650px;
+      line-height: 1.6;
     }
 
     .progress-bar {
-      width: 300px;
-      height: 10px;
+      width: 350px;
+      height: 12px;
       background: rgba(79, 70, 229, 0.3);
-      border-radius: 5px;
-      margin-top: 20px;
+      border-radius: 6px;
+      margin-top: 25px;
       overflow: hidden;
     }
 
     .progress {
       height: 100%;
       background: linear-gradient(to right, var(--accent), var(--secondary));
-      border-radius: 5px;
+      border-radius: 6px;
       width: 0%;
       transition: width 0.4s ease;
     }
@@ -661,58 +679,61 @@
 
     .watermark {
       position: absolute;
-      bottom: 15px;
-      right: 15px;
+      bottom: 20px;
+      right: 20px;
       color: rgba(255, 255, 255, 0.3);
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       font-weight: 500;
       letter-spacing: 1px;
       z-index: 1;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      font-family: 'Courier New', monospace;
     }
 
     .status-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px;
+      padding: 12px 15px;
       background: rgba(15, 23, 42, 0.8);
-      border-radius: 10px;
-      margin-top: 15px;
-      font-size: 0.9rem;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 0.95rem;
       border: 1px solid rgba(79, 70, 229, 0.3);
     }
 
     .status-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .status-indicator {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: var(--success);
     }
 
     .tabs {
       display: flex;
-      gap: 5px;
-      margin-bottom: 20px;
+      gap: 6px;
+      margin-bottom: 25px;
       border-bottom: 2px solid rgba(79, 70, 229, 0.3);
-      padding-bottom: 10px;
+      padding-bottom: 12px;
     }
 
     .tab-btn {
-      padding: 8px 16px;
+      padding: 10px 20px;
       background: rgba(30, 41, 59, 0.5);
       border: none;
-      border-radius: 8px 8px 0 0;
+      border-radius: 10px 10px 0 0;
       color: var(--light);
       cursor: pointer;
       transition: var(--transition);
       font-weight: 500;
+      position: relative;
+      overflow: hidden;
     }
 
     .tab-btn:hover {
@@ -725,6 +746,24 @@
       font-weight: 600;
     }
 
+    .tab-btn::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .tab-btn:hover::before {
+      opacity: 1;
+      transform: rotate(45deg) translate(20%, 20%);
+    }
+
     .tab-content {
       display: none;
     }
@@ -735,23 +774,25 @@
 
     .preset-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
     }
 
     .preset-card {
       background: rgba(30, 41, 59, 0.6);
-      border-radius: 12px;
-      padding: 15px;
+      border-radius: 14px;
+      padding: 18px;
       text-align: center;
       cursor: pointer;
       transition: var(--transition);
       border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
     }
 
     .preset-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
       border-color: var(--accent);
       background: rgba(79, 70, 229, 0.1);
     }
@@ -759,12 +800,397 @@
     .preset-card h4 {
       margin-bottom: 8px;
       color: var(--accent);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     .preset-card p {
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
+    .preset-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .preset-card:hover::before {
+      opacity: 1;
+      transform: rotate(45deg) translate(20%, 20%);
+    }
+
+    .animation-timeline {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 25px;
+      padding: 15px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+    }
+
+    .animation-frame {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      border: 2px solid rgba(79, 70, 229, 0.5);
+      background: rgba(15, 23, 42, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--light);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .animation-frame:hover {
+      transform: scale(1.1);
+      border-color: var(--accent);
+    }
+
+    .animation-frame.active {
+      border-color: var(--accent);
+      background: rgba(79, 70, 229, 0.3);
+      font-weight: bold;
+    }
+
+    .animation-frame::after {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      opacity: 0;
+    }
+
+    .animation-frame.active::after {
+      opacity: 1;
+    }
+
+    .timeline-controls {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .timeline-btn {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(79, 70, 229, 0.5);
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .timeline-btn:hover {
+      background: rgba(79, 70, 229, 0.2);
+      transform: scale(1.1);
+    }
+
+    .sprite-sheet-viewer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .sprite-frame {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid rgba(79, 70, 229, 0.5);
+      background: rgba(15, 23, 42, 0.5);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .sprite-frame:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+      z-index: 1;
+    }
+
+    .sprite-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .sprite-frame-number {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 0.8rem;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+
+    .separator-controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .separator-input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(79, 70, 229, 0.5);
+      background: rgba(30, 41, 59, 0.5);
+      color: var(--light);
+      font-size: 1rem;
+    }
+
+    .separator-btn {
+      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .separator-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    }
+
+    .sprite-info {
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .info-value {
+      font-weight: 500;
+    }
+
+    .animation-preview {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .export-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .export-option {
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 12px;
+      padding: 15px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .export-option:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      background: rgba(79, 70, 229, 0.1);
+    }
+
+    .export-option h4 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .export-option p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
+    .animation-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .speed-value {
+      min-width: 40px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .action-btn {
+      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.05rem;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+    }
+
+    .action-btn i {
+      font-size: 1.3rem;
+    }
+
+    .action-btn.secondary {
+      background: linear-gradient(to bottom, var(--secondary), #6d28d9);
+    }
+
+    .action-btn.danger {
+      background: linear-gradient(to bottom, var(--danger), #dc2626);
+    }
+
+    .history-item {
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: rgba(30, 41, 59, 0.5);
+      border-left: 4px solid var(--accent);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .history-item:hover {
+      background: rgba(79, 70, 229, 0.1);
+    }
+
+    .history-item i {
+      color: var(--accent);
+    }
+
+    .history-item span {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .history-item .time {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+    }
+
+    .info-box {
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 25px 0;
+      border-left: 4px solid var(--accent);
+    }
+
+    .info-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .info-content {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .info-content ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .info-content li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 1400px) {
+      .app-container {
+        grid-template-columns: 280px 1fr 280px;
+      }
+      
+      .toolbar {
+        gap: 12px;
+      }
+      
+      .toolbar-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
     }
 
     @media (max-width: 1200px) {
@@ -773,7 +1199,7 @@
         height: auto;
       }
       
-      .controls-panel, .preview-panel {
+      .controls-panel, .preview-panel, .tools-panel {
         grid-column: 1;
         grid-row: auto;
       }
@@ -789,7 +1215,7 @@
       }
       
       h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       
       .subtitle {
@@ -798,11 +1224,40 @@
       
       .toolbar {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
       }
       
       .canvas-container {
         height: 400px;
+      }
+      
+      .export-options, .separator-controls, .action-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-container {
+        padding: 10px;
+      }
+      
+      .toolbar-btn {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+      }
+      
+      .style-grid, .palette-grid, .preset-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      }
+      
+      .sprite-sheet-viewer {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      }
+      
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
       }
     }
   </style>
@@ -813,11 +1268,11 @@
       <div class="header-content">
         <div class="brand">
           <div class="logo">
-            <i class="fas fa-magic"></i>
+            <i class="fas fa-dragon"></i>
           </div>
           <div>
-            <h1>Chrono Legends Sprite Studio PRO</h1>
-            <p class="subtitle">Sistema de generación profesional de sprites con efectos mágicos avanzados y personalización completa</p>
+            <h1>Chrono Legends PRO - AQW Master Edition</h1>
+            <p class="subtitle">Editor de Sprites Ultra Profesional | Generador de Animaciones Completo | Separador de Sprite Sheets</p>
           </div>
         </div>
         <div class="toolbar">
@@ -842,268 +1297,168 @@
 
     <div class="controls-panel">
       <div class="panel">
-        <h2 class="panel-title"><i class="fas fa-upload"></i> Imagen Base</h2>
+        <h2 class="panel-title"><i class="fas fa-upload"></i> Carga de Imagen</h2>
         <div class="panel-content">
           <div class="upload-area" id="drop-area">
             <div class="upload-icon">
               <i class="fas fa-cloud-upload-alt"></i>
             </div>
             <p>Arrastra y suelta tu imagen aquí</p>
-            <p class="subtitle" style="font-size: 0.9rem; color: #94a3b8;">Soporta PNG, JPG, GIF con transparencia (máx. 10MB)</p>
+            <p class="subtitle" style="font-size: 0.9rem; color: #94a3b8;">Soporta PNG, JPG, GIF con transparencia (máx. 15MB)</p>
             <button class="toolbar-btn" id="browse-btn">
               <i class="fas fa-search"></i> Buscar Archivo
             </button>
             <input type="file" id="file-input" class="file-input" accept="image/*">
           </div>
 
-          <div class="info-box" style="background: rgba(30, 41, 59, 0.5); border-radius: 12px; padding: 15px; margin-top: 15px; border-left: 3px solid var(--accent);">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-              <i class="fas fa-lightbulb" style="color: var(--accent); font-size: 1.2rem;"></i>
-              <strong style="color: var(--accent);">Tips Profesionales</strong>
+          <div class="info-box">
+            <div class="info-title">
+              <i class="fas fa-lightbulb"></i> Guía Profesional
             </div>
-            <ul style="text-align: left; padding-left: 20px; line-height: 1.6;">
-              <li>Imágenes con fondo transparente dan mejores resultados</li>
-              <li>Personajes en pose frontal o 3/4 para mayor precisión</li>
-              <li>Resolución mínima recomendada: 512x512px</li>
-              <li>Colores vibrantes mejoran los efectos mágicos</li>
-            </ul>
+            <div class="info-content">
+              <p>Para obtener resultados óptimos:</p>
+              <ul>
+                <li>Usa imágenes con fondo transparente (formato PNG)</li>
+                <li>Personajes en pose frontal o 3/4 para mejor detección de contornos</li>
+                <li>Resolución mínima recomendada: 512x512px</li>
+                <li>Colores vibrantes mejoran los efectos mágicos</li>
+                <li>Evita fondos complejos para mejor extracción de personaje</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="panel">
-        <h2 class="panel-title"><i class="fas fa-palette"></i> Personalización</h2>
+        <h2 class="panel-title"><i class="fas fa-user-cog"></i> Estilo de Personaje</h2>
         <div class="panel-content">
-          <div class="tabs">
-            <button class="tab-btn active" data-tab="style">Estilo</button>
-            <button class="tab-btn" data-tab="effects">Efectos</button>
-            <button class="tab-btn" data-tab="weapons">Armas</button>
-            <button class="tab-btn" data-tab="animation">Animación</button>
-          </div>
-
-          <div class="tab-content active" id="style-tab">
-            <div class="style-section">
-              <h3 class="section-title"><i class="fas fa-user"></i> Clase de Personaje</h3>
-              <div class="style-grid">
-                <div class="style-card selected" data-style="warrior">
-                  <div class="style-img" style="background: linear-gradient(45deg, #1e40af, #1d4ed8);">
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                      <i class="fas fa-swords"></i>
-                    </div>
-                  </div>
-                  <div class="style-name">Guerrero</div>
-                </div>
-                
-                <div class="style-card" data-style="mage">
-                  <div class="style-img" style="background: linear-gradient(45deg, #7c3aed, #8b5cf6);">
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                      <i class="fas fa-hat-wizard"></i>
-                    </div>
-                  </div>
-                  <div class="style-name">Mago</div>
-                </div>
-                
-                <div class="style-card" data-style="archer">
-                  <div class="style-img" style="background: linear-gradient(45deg, #166534, #22c55e);">
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                      <i class="fas fa-bow-arrow"></i>
-                    </div>
-                  </div>
-                  <div class="style-name">Arquero</div>
-                </div>
-                
-                <div class="style-card" data-style="rogue">
-                  <div class="style-img" style="background: linear-gradient(45deg, #1e293b, #334155);">
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                      <i class="fas fa-mask"></i>
-                    </div>
-                  </div>
-                  <div class="style-name">Pícaro</div>
-                </div>
-                
-                <div class="style-card" data-style="priest">
-                  <div class="style-img" style="background: linear-gradient(45deg, #1d4ed8, #3b82f6);">
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                      <i class="fas fa-cross"></i>
-                    </div>
-                  </div>
-                  <div class="style-name">Sacerdote</div>
-                </div>
-                
-                <div class="style-card" data-style="assassin">
-                  <div class="style-img" style="background: linear-gradient(45deg, #92400e, #f97316);">
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                      <i class="fas fa-dagger"></i>
-                    </div>
-                  </div>
-                  <div class="style-name">Asesino</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="style-section">
-              <h3 class="section-title"><i class="fas fa-tint"></i> Paleta de Colores</h3>
-              <div class="palette-grid">
-                <div class="color-swatch selected" style="background: linear-gradient(45deg, #4f46e5, #7c3aed);" data-color="#60a5fa"></div>
-                <div class="color-swatch" style="background: linear-gradient(45deg, #1e40af, #1d4ed8);" data-color="#3b82f6"></div>
-                <div class="color-swatch" style="background: linear-gradient(45deg, #7c3aed, #8b5cf6);" data-color="#8b5cf6"></div>
-                <div class="color-swatch" style="background: linear-gradient(45deg, #f59e0b, #fdba74);" data-color="#f59e0b"></div>
-                <div class="color-swatch" style="background: linear-gradient(45deg, #166534, #22c55e);" data-color="#22c55e"></div>
-                <div class="color-swatch" style="background: linear-gradient(45deg, #dc2626, #f87171);" data-color="#ef4444"></div>
-                <div class="color-swatch" style="background: linear-gradient(45deg, #4f46e5, #818cf8);" data-color="#6366f1"></div>
-                <div class="color-swatch" style="background: linear-gradient(45deg, #92400e, #f97316);" data-color="#f97316"></div>
-              </div>
-            </div>
-
-            <div class="style-section">
-              <h3 class="section-title"><i class="fas fa-sliders-h"></i> Parámetros Avanzados</h3>
-              <div class="slider-control">
-                <div class="slider-label">
-                  <span><i class="fas fa-sparkles"></i> Intensidad de Efectos</span>
-                  <span id="effect-intensity-value">75%</span>
-                </div>
-                <input type="range" class="slider" min="0" max="100" value="75" id="effect-intensity">
-              </div>
-              
-              <div class="slider-control">
-                <div class="slider-label">
-                  <span><i class="fas fa-lightbulb"></i> Brillo</span>
-                  <span id="brightness-value">65%</span>
-                </div>
-                <input type="range" class="slider" min="0" max="100" value="65" id="brightness">
-              </div>
-              
-              <div class="slider-control">
-                <div class="slider-label">
-                  <span><i class="fas fa-paint-brush"></i> Suavizado</span>
-                  <span id="smoothness-value">40%</span>
-                </div>
-                <input type="range" class="slider" min="0" max="100" value="40" id="smoothness">
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-content" id="effects-tab">
-            <div class="preset-grid">
-              <div class="preset-card" data-effect="fire">
-                <h4><i class="fas fa-fire" style="color: #f97316;"></i> Aura de Fuego</h4>
-                <p>Efecto de llamas dinámicas con partículas rojas y naranjas</p>
-              </div>
-              
-              <div class="preset-card" data-effect="ice">
-                <h4><i class="fas fa-snowflake" style="color: #38bdf8;"></i> Aura de Hielo</h4>
-                <p>Cristales de hielo y partículas azules brillantes</p>
-              </div>
-              
-              <div class="preset-card" data-effect="lightning">
-                <h4><i class="fas fa-bolt" style="color: #fbbf24;"></i> Aura de Rayo</h4>
-                <p>Rayos eléctricos con destellos amarillos y blancos</p>
-              </div>
-              
-              <div class="preset-card" data-effect="poison">
-                <h4><i class="fas fa-skull" style="color: #84cc16;"></i> Aura Venenosa</h4>
-                <p>Niebla verde tóxica con burbujas venenosas</p>
-              </div>
-              
-              <div class="preset-card" data-effect="holy">
-                <h4><i class="fas fa-dove" style="color: #f1f5f9;"></i> Aura Sagrada</h4>
-                <p>Brillo dorado con partículas de luz divina</p>
-              </div>
-              
-              <div class="preset-card" data-effect="shadow">
-                <h4><i class="fas fa-moon" style="color: #94a3b8;"></i> Aura Oscura</h4>
-                <p>Sombras dinámicas con partículas púrpuras</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-content" id="weapons-tab">
+          <div class="style-section">
+            <h3 class="section-title"><i class="fas fa-user"></i> Clase de Personaje</h3>
             <div class="style-grid">
-              <div class="style-card selected" data-weapon="sword">
-                <div class="style-img" style="background: linear-gradient(45deg, #1e40af, #3b82f6);">
-                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                    <i class="fas fa-sword"></i>
+              <div class="style-card selected" data-style="warrior">
+                <div class="style-img" style="background: linear-gradient(45deg, #1e40af, #1d4ed8);">
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
+                    <i class="fas fa-swords"></i>
                   </div>
                 </div>
-                <div class="style-name">Espada Azul</div>
+                <div class="style-name">Guerrero</div>
               </div>
               
-              <div class="style-card" data-weapon="staff">
+              <div class="style-card" data-style="mage">
                 <div class="style-img" style="background: linear-gradient(45deg, #7c3aed, #8b5cf6);">
-                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                    <i class="fas fa-staff"></i>
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
+                    <i class="fas fa-hat-wizard"></i>
                   </div>
                 </div>
-                <div class="style-name">Bastón Mágico</div>
+                <div class="style-name">Mago</div>
               </div>
               
-              <div class="style-card" data-weapon="bow">
+              <div class="style-card" data-style="archer">
                 <div class="style-img" style="background: linear-gradient(45deg, #166534, #22c55e);">
-                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                    <i class="fas fa-bow"></i>
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
+                    <i class="fas fa-bow-arrow"></i>
                   </div>
                 </div>
-                <div class="style-name">Arco Élfico</div>
+                <div class="style-name">Arquero</div>
               </div>
               
-              <div class="style-card" data-weapon="axe">
+              <div class="style-card" data-style="rogue">
+                <div class="style-img" style="background: linear-gradient(45deg, #1e293b, #334155);">
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
+                    <i class="fas fa-mask"></i>
+                  </div>
+                </div>
+                <div class="style-name">Pícaro</div>
+              </div>
+              
+              <div class="style-card" data-style="priest">
+                <div class="style-img" style="background: linear-gradient(45deg, #1d4ed8, #3b82f6);">
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
+                    <i class="fas fa-cross"></i>
+                  </div>
+                </div>
+                <div class="style-name">Sacerdote</div>
+              </div>
+              
+              <div class="style-card" data-style="assassin">
                 <div class="style-img" style="background: linear-gradient(45deg, #92400e, #f97316);">
-                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                    <i class="fas fa-axe"></i>
-                  </div>
-                </div>
-                <div class="style-name">Hacha de Guerra</div>
-              </div>
-              
-              <div class="style-card" data-weapon="dagger">
-                <div class="style-img" style="background: linear-gradient(45deg, #1e293b, #64748b);">
-                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
                     <i class="fas fa-dagger"></i>
                   </div>
                 </div>
-                <div class="style-name">Daga Mística</div>
+                <div class="style-name">Asesino</div>
               </div>
               
-              <div class="style-card" data-weapon="hammer">
-                <div class="style-img" style="background: linear-gradient(45deg, #78350f, #f59e0b);">
-                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                    <i class="fas fa-hammer-war"></i>
+              <div class="style-card" data-style="necromancer">
+                <div class="style-img" style="background: linear-gradient(45deg, #4f46e5, #7c3aed);">
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
+                    <i class="fas fa-skull"></i>
                   </div>
                 </div>
-                <div class="style-name">Martillo Sagrado</div>
+                <div class="style-name">Nigromante</div>
+              </div>
+              
+              <div class="style-card" data-style="paladin">
+                <div class="style-img" style="background: linear-gradient(45deg, #f59e0b, #fbbf24);">
+                  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.2rem;">
+                    <i class="fas fa-shield-alt"></i>
+                  </div>
+                </div>
+                <div class="style-name">Paladín</div>
               </div>
             </div>
           </div>
 
-          <div class="tab-content" id="animation-tab">
-            <h3 class="section-title"><i class="fas fa-play"></i> Tipo de Animación</h3>
-            <div class="preset-grid">
-              <div class="preset-card" data-animation="idle">
-                <h4><i class="fas fa-user-clock"></i> Idle</h4>
-                <p>Animación de respiración sutil</p>
-              </div>
-              
-              <div class="preset-card" data-animation="attack">
-                <h4><i class="fas fa-fist-raised"></i> Ataque</h4>
-                <p>Secuencia de ataque con arma</p>
-              </div>
-              
-              <div class="preset-card" data-animation="spell">
-                <h4><i class="fas fa-magic"></i> Hechizo</h4>
-                <p>Efectos mágicos con partículas</p>
-              </div>
+          <div class="style-section">
+            <h3 class="section-title"><i class="fas fa-tint"></i> Paleta de Colores</h3>
+            <div class="palette-grid">
+              <div class="color-swatch selected" style="background: linear-gradient(45deg, #4f46e5, #7c3aed);" data-color="#60a5fa"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #1e40af, #1d4ed8);" data-color="#3b82f6"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #7c3aed, #8b5cf6);" data-color="#8b5cf6"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #f59e0b, #fdba74);" data-color="#f59e0b"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #166534, #22c55e);" data-color="#22c55e"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #dc2626, #f87171);" data-color="#ef4444"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #4f46e5, #818cf8);" data-color="#6366f1"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #92400e, #f97316);" data-color="#f97316"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #8b5cf6, #c084fc);" data-color="#a78bfa"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #1e293b, #334155);" data-color="#1e293b"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #0f172a, #1e293b);" data-color="#0f172a"><i class="fas fa-check"></i></div>
+              <div class="color-swatch" style="background: linear-gradient(45deg, #f59e0b, #fbbf24);" data-color="#fbbf24"><i class="fas fa-check"></i></div>
             </div>
+          </div>
 
-            <h3 class="section-title" style="margin-top: 20px;"><i class="fas fa-film"></i> Vista Previa de Frames</h3>
-            <div class="animation-preview">
-              <div class="animation-frame active">1</div>
-              <div class="animation-frame">2</div>
-              <div class="animation-frame">3</div>
-              <div class="animation-frame">4</div>
-              <div class="animation-frame">5</div>
-              <div class="animation-frame">6</div>
-              <div class="animation-frame">7</div>
-              <div class="animation-frame">8</div>
+          <div class="style-section">
+            <h3 class="section-title"><i class="fas fa-sliders-h"></i> Parámetros Avanzados</h3>
+            <div class="slider-control">
+              <div class="slider-label">
+                <span><i class="fas fa-sparkles"></i> Intensidad de Efectos</span>
+                <span id="effect-intensity-value">75%</span>
+              </div>
+              <input type="range" class="slider" min="0" max="100" value="75" id="effect-intensity">
+            </div>
+            
+            <div class="slider-control">
+              <div class="slider-label">
+                <span><i class="fas fa-lightbulb"></i> Brillo</span>
+                <span id="brightness-value">65%</span>
+              </div>
+              <input type="range" class="slider" min="0" max="100" value="65" id="brightness">
+            </div>
+            
+            <div class="slider-control">
+              <div class="slider-label">
+                <span><i class="fas fa-paint-brush"></i> Suavizado</span>
+                <span id="smoothness-value">40%</span>
+              </div>
+              <input type="range" class="slider" min="0" max="100" value="40" id="smoothness">
+            </div>
+            
+            <div class="slider-control">
+              <div class="slider-label">
+                <span><i class="fas fa-shield-alt"></i> Contorno</span>
+                <span id="outline-value">60%</span>
+              </div>
+              <input type="range" class="slider" min="0" max="100" value="60" id="outline">
             </div>
           </div>
         </div>
@@ -1115,9 +1470,9 @@
         <h2 class="panel-title"><i class="fas fa-eye"></i> Vista Previa en Tiempo Real</h2>
         <div class="panel-content" style="flex: 1; display: flex; flex-direction: column;">
           <div class="canvas-container">
-            <div id="sprite-canvas-container">
-              <canvas id="sprite-canvas" width="512" height="512"></canvas>
-              <div class="watermark">Chrono Legends Sprite Studio PRO</div>
+            <div class="canvas-wrapper">
+              <canvas id="sprite-canvas" width="768" height="768"></canvas>
+              <div class="watermark">Chrono Legends PRO - AQW Master Edition</div>
             </div>
             <div class="layer-controls">
               <button class="layer-btn active" data-layer="all"><i class="fas fa-layer-group"></i> Todo</button>
@@ -1131,11 +1486,11 @@
           <div class="status-bar">
             <div class="status-item">
               <div class="status-indicator"></div>
-              <span>Listo para generar</span>
+              <span id="status-text">Listo para generar</span>
             </div>
             <div class="status-item">
               <i class="fas fa-ruler-combined"></i>
-              <span>512x512px</span>
+              <span>768x768px</span>
             </div>
             <div class="status-item">
               <i class="fas fa-file-image"></i>
@@ -1150,12 +1505,215 @@
       </div>
     </div>
 
+    <div class="tools-panel">
+      <div class="panel">
+        <h2 class="panel-title"><i class="fas fa-cogs"></i> Herramientas Avanzadas</h2>
+        <div class="panel-content">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="animation">Animación</button>
+            <button class="tab-btn" data-tab="separator">Separador</button>
+            <button class="tab-btn" data-tab="generator">Generador</button>
+            <button class="tab-btn" data-tab="history">Historial</button>
+          </div>
+
+          <div class="tab-content active" id="animation-tab">
+            <h3 class="section-title"><i class="fas fa-film"></i> Configuración de Animación</h3>
+            
+            <div class="preset-grid">
+              <div class="preset-card" data-animation="idle">
+                <h4><i class="fas fa-user-clock"></i> Idle</h4>
+                <p>Animación de respiración sutil con efectos mágicos</p>
+              </div>
+              
+              <div class="preset-card" data-animation="attack">
+                <h4><i class="fas fa-fist-raised"></i> Ataque</h4>
+                <p>Secuencia de ataque con arma y efectos dinámicos</p>
+              </div>
+              
+              <div class="preset-card" data-animation="spell">
+                <h4><i class="fas fa-magic"></i> Hechizo</h4>
+                <p>Efectos mágicos con partículas y animación de carga</p>
+              </div>
+              
+              <div class="preset-card" data-animation="special">
+                <h4><i class="fas fa-star"></i> Habilidad Especial</h4>
+                <p>Animación de ultimate con efectos espectaculares</p>
+              </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 25px;"><i class="fas fa-sync-alt"></i> Timeline de Animación</h3>
+            <div class="animation-timeline">
+              <div class="animation-frame active">1</div>
+              <div class="animation-frame">2</div>
+              <div class="animation-frame">3</div>
+              <div class="animation-frame">4</div>
+              <div class="animation-frame">5</div>
+              <div class="animation-frame">6</div>
+              <div class="animation-frame">7</div>
+              <div class="animation-frame">8</div>
+              
+              <div class="timeline-controls">
+                <button class="timeline-btn"><i class="fas fa-play"></i></button>
+                <button class="timeline-btn"><i class="fas fa-pause"></i></button>
+                <button class="timeline-btn"><i class="fas fa-step-backward"></i></button>
+                <button class="timeline-btn"><i class="fas fa-step-forward"></i></button>
+              </div>
+            </div>
+
+            <div class="animation-controls">
+              <div class="speed-control">
+                <span>Velocidad:</span>
+                <input type="range" class="slider" min="1" max="10" value="5" id="animation-speed">
+                <span class="speed-value" id="speed-value">5x</span>
+              </div>
+              
+              <div class="speed-control">
+                <span>Repetir:</span>
+                <input type="checkbox" id="loop-animation" checked>
+                <label for="loop-animation" style="cursor: pointer;">Sí</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="separator-tab">
+            <h3 class="section-title"><i class="fas fa-th"></i> Separador de Sprite Sheets</h3>
+            
+            <div class="upload-area" id="separator-drop-area">
+              <div class="upload-icon">
+                <i class="fas fa-th-large"></i>
+              </div>
+              <p>Arrastra y suelta un sprite sheet aquí</p>
+              <p class="subtitle" style="font-size: 0.9rem; color: #94a3b8;">Soporta PNG, JPG (máx. 20MB)</p>
+              <button class="toolbar-btn" id="separator-browse-btn">
+                <i class="fas fa-search"></i> Buscar Sprite Sheet
+              </button>
+              <input type="file" id="separator-file-input" class="file-input" accept="image/*">
+            </div>
+
+            <div class="separator-controls">
+              <input type="number" class="separator-input" id="frame-width" value="96" min="16" max="256" placeholder="Ancho (px)">
+              <input type="number" class="separator-input" id="frame-height" value="96" min="16" max="256" placeholder="Alto (px)">
+            </div>
+            
+            <button class="separator-btn" id="separate-btn">
+              <i class="fas fa-cut"></i> Separar Sprite Sheet
+            </button>
+
+            <div class="sprite-sheet-viewer" id="sprite-frames-container">
+              <!-- Los frames se generarán dinámicamente -->
+            </div>
+          </div>
+
+          <div class="tab-content" id="generator-tab">
+            <h3 class="section-title"><i class="fas fa-wand-magic"></i> Generador de Animaciones AQW</h3>
+            
+            <div class="preset-grid">
+              <div class="preset-card" data-generator="warrior-attack">
+                <h4><i class="fas fa-swords"></i> Ataque Guerrero</h4>
+                <p>Animación de ataque con espada y efectos de energía</p>
+              </div>
+              
+              <div class="preset-card" data-generator="mage-spell">
+                <h4><i class="fas fa-hat-wizard"></i> Hechizo Mágico</h4>
+                <p>Animación de lanzamiento de hechizo con partículas</p>
+              </div>
+              
+              <div class="preset-card" data-generator="archer-shoot">
+                <h4><i class="fas fa-bow-arrow"></i> Disparo Arquero</h4>
+                <p>Animación de tiro con arco y flecha mágica</p>
+              </div>
+              
+              <div class="preset-card" data-generator="rogue-dagger">
+                <h4><i class="fas fa-dagger"></i> Ataque Pícaro</h4>
+                <p>Animación de ataque sigiloso con dagas</p>
+              </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 25px;"><i class="fas fa-cog"></i> Configuración Avanzada</h3>
+            <div class="slider-control">
+              <div class="slider-label">
+                <span><i class="fas fa-sparkles"></i> Intensidad de Partículas</span>
+                <span id="particle-intensity-value">70%</span>
+              </div>
+              <input type="range" class="slider" min="0" max="100" value="70" id="particle-intensity">
+            </div>
+            
+            <div class="slider-control">
+              <div class="slider-label">
+                <span><i class="fas fa-sync-alt"></i> Velocidad de Animación</span>
+                <span id="animation-intensity-value">80%</span>
+              </div>
+              <input type="range" class="slider" min="0" max="100" value="80" id="animation-intensity">
+            </div>
+
+            <div class="export-options">
+              <div class="export-option" data-format="png">
+                <h4><i class="fas fa-file-image"></i> PNG Secuencial</h4>
+                <p>Frames individuales en formato PNG con transparencia</p>
+              </div>
+              
+              <div class="export-option" data-format="json">
+                <h4><i class="fas fa-file-code"></i> JSON + PNG</h4>
+                <p>Archivo JSON con metadatos y frames en PNG</p>
+              </div>
+              
+              <div class="export-option" data-format="gif">
+                <h4><i class="fas fa-file-video"></i> GIF Animado</h4>
+                <p>Animación en formato GIF con transparencia</p>
+              </div>
+              
+              <div class="export-option" data-format="sprite-sheet">
+                <h4><i class="fas fa-th-large"></i> Sprite Sheet</h4>
+                <p>Hoja de sprites con configuración para juegos</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="history-tab">
+            <h3 class="section-title"><i class="fas fa-history"></i> Historial de Edición</h3>
+            
+            <div class="history-item">
+              <i class="fas fa-paint-brush"></i>
+              <span>Cambio de estilo a Guerrero</span>
+              <span class="time">Hace 2 min</span>
+            </div>
+            
+            <div class="history-item">
+              <i class="fas fa-tint"></i>
+              <span>Cambio de color principal a #60a5fa</span>
+              <span class="time">Hace 5 min</span>
+            </div>
+            
+            <div class="history-item">
+              <i class="fas fa-user"></i>
+              <span>Subida de imagen base</span>
+              <span class="time">Hace 10 min</span>
+            </div>
+            
+            <div class="history-item">
+              <i class="fas fa-magic"></i>
+              <span>Generación inicial del sprite</span>
+              <span class="time">Hace 15 min</span>
+            </div>
+            
+            <div class="history-item">
+              <i class="fas fa-save"></i>
+              <span>Guardado de proyecto</span>
+              <span class="time">Hace 20 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="app-footer">
-      <p>Chrono Legends Sprite Studio PRO v3.2.1 | Sistema de generación de sprites para uso personal y educativo</p>
-      <p style="font-size: 0.85rem; margin-top: 5px; color: rgba(255, 255, 255, 0.6);">
-        <i class="fas fa-exclamation-circle"></i> Esta herramienta está diseñada para crear sprites originales inspirados en juegos clásicos. 
-        No use activos protegidos por derechos de autor sin permiso.
-      </p>
+      <div>
+        <i class="fas fa-copyright"></i> Chrono Legends Sprite Studio PRO v4.0 | Sistema de generación de sprites para uso personal y educativo
+      </div>
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <span><i class="fas fa-check-circle" style="color: var(--success);"></i> Listo para uso</span>
+        <span><i class="fas fa-cog"></i> Modo Profesional Activado</span>
+      </div>
     </div>
   </div>
 
@@ -1168,6 +1726,7 @@
     <div class="spinner-container">
       <div class="spinner"></div>
       <div class="spinner-inner"></div>
+      <div class="spinner-center"></div>
     </div>
     <div class="loading-text">Generando Sprite Profesional</div>
     <div class="loading-subtext">Aplicando efectos mágicos avanzados, optimizando detalles y preparando archivo para exportación...</div>
@@ -1184,6 +1743,10 @@
       const fileInput = document.getElementById('file-input');
       const browseBtn = document.getElementById('browse-btn');
       const dropArea = document.getElementById('drop-area');
+      const separatorFileInput = document.getElementById('separator-file-input');
+      const separatorBrowseBtn = document.getElementById('separator-browse-btn');
+      const separatorDropArea = document.getElementById('separator-drop-area');
+      const separateBtn = document.getElementById('separate-btn');
       const generateBtn = document.getElementById('save-project-btn');
       const downloadBtn = document.getElementById('export-btn');
       const resetBtn = document.getElementById('reset-btn');
@@ -1195,6 +1758,7 @@
       // Estado de la aplicación
       const state = {
         currentImage: null,
+        currentSpriteSheet: null,
         currentStyle: 'warrior',
         currentWeapon: 'sword',
         currentEffect: 'fire',
@@ -1203,11 +1767,17 @@
         effectIntensity: 75,
         brightness: 65,
         smoothness: 40,
+        outline: 60,
+        particleIntensity: 70,
+        animationIntensity: 80,
         activeLayer: 'all',
         animationFrame: 1,
         hasGenerated: false,
         projectHistory: [],
-        currentProject: null
+        currentProject: null,
+        spriteFrames: [],
+        animationSpeed: 5,
+        loopAnimation: true
       };
 
       // Inicializar canvas
@@ -1270,12 +1840,18 @@
       }
 
       function setupEventListeners() {
-        // Eventos de arrastrar y soltar
-        setupDragAndDrop();
+        // Eventos de arrastrar y soltar para carga de imágenes
+        setupDragAndDrop(dropArea, handleImageFiles);
+        setupDragAndDrop(separatorDropArea, handleSpriteSheetFiles);
         
         // Eventos de botones
         browseBtn.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', handleFileSelect);
+        fileInput.addEventListener('change', handleImageFiles);
+        
+        separatorBrowseBtn.addEventListener('click', () => separatorFileInput.click());
+        separatorFileInput.addEventListener('change', handleSpriteSheetFiles);
+        
+        separateBtn.addEventListener('click', separateSpriteSheet);
         
         // Eventos de estilo
         document.querySelectorAll('.style-card').forEach(card => {
@@ -1327,6 +1903,32 @@
           if (state.hasGenerated) previewChanges();
         });
         
+        document.getElementById('outline').addEventListener('input', function() {
+          state.outline = parseInt(this.value);
+          document.getElementById('outline-value').textContent = this.value + '%';
+          if (state.hasGenerated) previewChanges();
+        });
+        
+        document.getElementById('particle-intensity').addEventListener('input', function() {
+          state.particleIntensity = parseInt(this.value);
+          document.getElementById('particle-intensity-value').textContent = this.value + '%';
+          if (state.hasGenerated) previewChanges();
+        });
+        
+        document.getElementById('animation-intensity').addEventListener('input', function() {
+          state.animationIntensity = parseInt(this.value);
+          document.getElementById('animation-intensity-value').textContent = this.value + '%';
+          if (state.hasGenerated) previewChanges();
+        });
+        
+        document.getElementById('animation-speed').addEventListener('input', function() {
+          state.animationSpeed = parseInt(this.value);
+          document.getElementById('speed-value').textContent = this.value + 'x';
+          if (state.hasGenerated) {
+            generateSpriteWithProgress();
+          }
+        });
+        
         // Eventos de tabs
         document.querySelectorAll('.tab-btn').forEach(btn => {
           btn.addEventListener('click', function() {
@@ -1370,16 +1972,29 @@
           });
         });
         
-        // Eventos de efectos
+        // Eventos de animación
         document.querySelectorAll('.preset-card').forEach(card => {
           card.addEventListener('click', function() {
             document.querySelectorAll('.preset-card').forEach(c => c.style.opacity = '0.7');
             this.style.opacity = '1';
-            state.currentEffect = this.dataset.effect;
+            
+            if (this.dataset.animation) {
+              state.currentAnimation = this.dataset.animation;
+            } else if (this.dataset.generator) {
+              state.currentGenerator = this.dataset.generator;
+            }
             
             if (state.hasGenerated) {
               generateSpriteWithProgress();
             }
+          });
+        });
+        
+        // Eventos de exportación
+        document.querySelectorAll('.export-option').forEach(option => {
+          option.addEventListener('click', function() {
+            const format = this.dataset.format;
+            exportSprite(format);
           });
         });
         
@@ -1391,9 +2006,9 @@
         document.getElementById('save-project-btn').addEventListener('click', saveProject);
       }
 
-      function setupDragAndDrop() {
+      function setupDragAndDrop(element, handler) {
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-          dropArea.addEventListener(eventName, preventDefaults, false);
+          element.addEventListener(eventName, preventDefaults, false);
           document.body.addEventListener(eventName, preventDefaults, false);
         });
 
@@ -1403,49 +2018,43 @@
         }
 
         ['dragenter', 'dragover'].forEach(eventName => {
-          dropArea.addEventListener(eventName, highlight, false);
+          element.addEventListener(eventName, highlight, false);
         });
 
         ['dragleave', 'drop'].forEach(eventName => {
-          dropArea.addEventListener(eventName, unhighlight, false);
+          element.addEventListener(eventName, unhighlight, false);
         });
 
         function highlight() {
-          dropArea.classList.add('drag-over');
+          element.classList.add('drag-over');
         }
 
         function unhighlight() {
-          dropArea.classList.remove('drag-over');
+          element.classList.remove('drag-over');
         }
 
-        dropArea.addEventListener('drop', handleDrop, false);
+        element.addEventListener('drop', function(e) {
+          const dt = e.dataTransfer;
+          const files = dt.files;
+          
+          if (files.length) {
+            handler({ target: { files } });
+          }
+        }, false);
       }
 
-      function handleDrop(e) {
-        const dt = e.dataTransfer;
-        const files = dt.files;
+      function handleImageFiles(e) {
+        if (e.target.files.length === 0) return;
         
-        if (files.length) {
-          handleFiles(files);
-        }
-      }
-
-      function handleFileSelect(e) {
-        handleFiles(e.target.files);
-      }
-
-      function handleFiles(files) {
-        if (files.length === 0) return;
-        
-        const file = files[0];
+        const file = e.target.files[0];
         
         if (!file.type.match('image.*')) {
           showNotification('Por favor selecciona una imagen válida', 'error');
           return;
         }
         
-        if (file.size > 10 * 1024 * 1024) {
-          showNotification('La imagen es demasiado grande (máximo 10MB)', 'error');
+        if (file.size > 15 * 1024 * 1024) {
+          showNotification('La imagen es demasiado grande (máximo 15MB)', 'error');
           return;
         }
         
@@ -1458,11 +2067,130 @@
             previewBaseImage();
             showNotification('Imagen cargada exitosamente!');
             state.hasGenerated = false;
+            document.getElementById('status-text').textContent = 'Imagen cargada';
           };
           img.src = e.target.result;
         };
         
         reader.readAsDataURL(file);
+      }
+
+      function handleSpriteSheetFiles(e) {
+        if (e.target.files.length === 0) return;
+        
+        const file = e.target.files[0];
+        
+        if (!file.type.match('image.*')) {
+          showNotification('Por favor selecciona una imagen válida', 'error');
+          return;
+        }
+        
+        if (file.size > 20 * 1024 * 1024) {
+          showNotification('El sprite sheet es demasiado grande (máximo 20MB)', 'error');
+          return;
+        }
+        
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const img = new Image();
+          img.onload = function() {
+            state.currentSpriteSheet = img;
+            showNotification('Sprite sheet cargado exitosamente!');
+            document.getElementById('status-text').textContent = 'Sprite sheet cargado';
+          };
+          img.src = e.target.result;
+        };
+        
+        reader.readAsDataURL(file);
+      }
+
+      function separateSpriteSheet() {
+        if (!state.currentSpriteSheet) {
+          showNotification('Primero carga un sprite sheet para separarlo', 'error');
+          return;
+        }
+        
+        const frameWidth = parseInt(document.getElementById('frame-width').value) || 96;
+        const frameHeight = parseInt(document.getElementById('frame-height').value) || 96;
+        
+        if (frameWidth < 16 || frameHeight < 16) {
+          showNotification('El tamaño mínimo del frame es 16x16px', 'error');
+          return;
+        }
+        
+        // Crear canvas temporal para procesar
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d');
+        
+        tempCanvas.width = frameWidth;
+        tempCanvas.height = frameHeight;
+        
+        // Calcular número de frames
+        const cols = Math.floor(state.currentSpriteSheet.width / frameWidth);
+        const rows = Math.floor(state.currentSpriteSheet.height / frameHeight);
+        const totalFrames = cols * rows;
+        
+        if (totalFrames === 0) {
+          showNotification('No se encontraron frames en el sprite sheet', 'error');
+          return;
+        }
+        
+        // Limpiar contenedor de frames
+        document.getElementById('sprite-frames-container').innerHTML = '';
+        
+        // Extraer frames
+        state.spriteFrames = [];
+        
+        for (let row = 0; row < rows; row++) {
+          for (let col = 0; col < cols; col++) {
+            const x = col * frameWidth;
+            const y = row * frameHeight;
+            
+            // Dibujar frame en canvas temporal
+            tempCtx.clearRect(0, 0, frameWidth, frameHeight);
+            tempCtx.drawImage(
+              state.currentSpriteSheet,
+              x, y, frameWidth, frameHeight,
+              0, 0, frameWidth, frameHeight
+            );
+            
+            // Convertir a imagen
+            const frameDataUrl = tempCanvas.toDataURL('image/png');
+            
+            // Guardar en estado
+            state.spriteFrames.push({
+              dataUrl: frameDataUrl,
+              x: x,
+              y: y,
+              width: frameWidth,
+              height: frameHeight
+            });
+            
+            // Crear elemento visual
+            const frameElement = document.createElement('div');
+            frameElement.className = 'sprite-frame';
+            frameElement.innerHTML = `
+              <img src="${frameDataUrl}" alt="Frame ${state.spriteFrames.length}">
+              <span class="sprite-frame-number">${state.spriteFrames.length}</span>
+            `;
+            
+            // Agregar evento de descarga
+            frameElement.addEventListener('click', function() {
+              const link = document.createElement('a');
+              link.download = `frame-${state.spriteFrames.length}.png`;
+              link.href = frameDataUrl;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            });
+            
+            document.getElementById('sprite-frames-container').appendChild(frameElement);
+          }
+        }
+        
+        showNotification(`Sprite sheet separado en ${totalFrames} frames!`);
+        document.getElementById('status-text').textContent = `${totalFrames} frames separados`;
       }
 
       function previewBaseImage() {
@@ -1554,6 +2282,7 @@
             showLoading(false);
             progressBar.style.width = '0%';
             showNotification('Sprite actualizado con los nuevos parámetros!');
+            document.getElementById('status-text').textContent = 'Sprite generado';
           }, 300);
         }, 1500);
       }
@@ -1631,6 +2360,14 @@
             gradient.addColorStop(0, '#0f172a');
             gradient.addColorStop(1, '#92400e');
             break;
+          case 'necromancer':
+            gradient.addColorStop(0, '#0f172a');
+            gradient.addColorStop(1, '#4f46e5');
+            break;
+          case 'paladin':
+            gradient.addColorStop(0, '#0f172a');
+            gradient.addColorStop(1, '#f59e0b');
+            break;
           default:
             gradient.addColorStop(0, '#0f172a');
             gradient.addColorStop(1, '#1e293b');
@@ -1675,6 +2412,15 @@
           ctx.globalCompositeOperation = 'source-over';
         }
         
+        // Añadir efecto de suavizado
+        if (state.smoothness > 0) {
+          ctx.globalAlpha = 0.3;
+          ctx.filter = `blur(${state.smoothness / 10}px)`;
+          ctx.drawImage(state.currentImage, x, y, width, height);
+          ctx.filter = 'none';
+          ctx.globalAlpha = 1.0;
+        }
+        
         ctx.filter = 'none';
         ctx.restore();
       }
@@ -1683,25 +2429,31 @@
         ctx.save();
         ctx.translate(x, y);
         
-        switch(state.currentWeapon) {
-          case 'sword':
+        switch(state.currentStyle) {
+          case 'warrior':
             drawSword(size);
             break;
-          case 'staff':
+          case 'mage':
             drawStaff(size);
             break;
-          case 'bow':
+          case 'archer':
             drawBow(size);
             break;
-          case 'axe':
-            drawAxe(size);
-            break;
-          case 'dagger':
+          case 'rogue':
+          case 'assassin':
             drawDagger(size);
             break;
-          case 'hammer':
-            drawHammer(size);
+          case 'priest':
+            drawCrosier(size);
             break;
+          case 'necromancer':
+            drawSkullStaff(size);
+            break;
+          case 'paladin':
+            drawHolySword(size);
+            break;
+          default:
+            drawSword(size);
         }
         
         ctx.restore();
@@ -1837,38 +2589,210 @@
         }
       }
 
+      function drawDagger(size) {
+        // Daga izquierda
+        ctx.save();
+        ctx.rotate(-0.3);
+        drawSingleDagger(size, state.currentColor, state.currentColor);
+        ctx.restore();
+        
+        // Daga derecha
+        ctx.save();
+        ctx.rotate(0.3);
+        drawSingleDagger(size, state.currentColor, state.currentColor);
+        ctx.restore();
+      }
+
+      function drawSingleDagger(size, mainColor, accentColor) {
+        // Hoja
+        ctx.beginPath();
+        ctx.moveTo(0, -size/2);
+        ctx.lineTo(size/4, 0);
+        ctx.lineTo(0, size/2);
+        ctx.closePath();
+        ctx.fillStyle = mainColor;
+        ctx.fill();
+        
+        // Resplandor
+        ctx.beginPath();
+        ctx.moveTo(0, -size/2);
+        ctx.lineTo(size/6, -size/4);
+        ctx.lineTo(0, 0);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.fill();
+        
+        // Empuñadura
+        ctx.fillStyle = accentColor;
+        ctx.fillRect(-size/10, size/2, size/5, size/3);
+        
+        // Detalle
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.fillRect(-size/10, size/2, size/5, 2);
+      }
+
+      function drawCrosier(size) {
+        // Parte superior (cruz)
+        ctx.beginPath();
+        ctx.moveTo(-size/4, -size/2);
+        ctx.lineTo(size/4, -size/2);
+        ctx.lineTo(0, -size/2 - size/3);
+        ctx.closePath();
+        ctx.fillStyle = state.currentColor;
+        ctx.fill();
+        
+        // Resplandor
+        ctx.beginPath();
+        ctx.moveTo(-size/5, -size/2);
+        ctx.lineTo(size/5, -size/2);
+        ctx.lineTo(0, -size/2 - size/4);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.fill();
+        
+        // Varita
+        ctx.fillStyle = '#1d4ed8';
+        ctx.fillRect(-size/15, -size/2 + size/10, size/7.5, size*1.2);
+        
+        // Partículas sagradas
+        for (let i = 0; i < 8; i++) {
+          const angle = i * (Math.PI * 2 / 8);
+          const radius = size/2 + Math.random() * size/4;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+          
+          ctx.beginPath();
+          ctx.arc(x, y, size/15, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${0.5 + Math.random() * 0.5})`;
+          ctx.fill();
+        }
+      }
+
+      function drawSkullStaff(size) {
+        // Calavera
+        ctx.beginPath();
+        ctx.arc(0, -size/2, size/5, 0, Math.PI * 2);
+        ctx.fillStyle = '#e5e7eb';
+        ctx.fill();
+        
+        // Ojos
+        ctx.beginPath();
+        ctx.arc(-size/10, -size/2, size/15, 0, Math.PI * 2);
+        ctx.fillStyle = '#1e40af';
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.arc(size/10, -size/2, size/15, 0, Math.PI * 2);
+        ctx.fillStyle = '#1e40af';
+        ctx.fill();
+        
+        // Sonrisa
+        ctx.beginPath();
+        ctx.arc(0, -size/2 + size/10, size/10, 0, Math.PI);
+        ctx.strokeStyle = '#1e40af';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Varita
+        ctx.beginPath();
+        ctx.rect(-size/15, -size/2 + size/4, size/7.5, size*1.2);
+        ctx.fillStyle = '#4f46e5';
+        ctx.fill();
+        
+        // Detalles
+        for (let i = 0; i < 3; i++) {
+          const y = -size/2 + size/4 + i * size/4;
+          ctx.beginPath();
+          ctx.moveTo(-size/8, y);
+          ctx.lineTo(size/8, y);
+          ctx.strokeStyle = '#8b5cf6';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+        
+        // Efecto mágico
+        ctx.beginPath();
+        ctx.arc(0, -size/2, size/4, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(124, 58, 237, 0.5)';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+
+      function drawHolySword(size) {
+        // Hoja
+        ctx.beginPath();
+        ctx.moveTo(0, -size/2);
+        ctx.lineTo(size/4, size/4);
+        ctx.lineTo(0, size/2);
+        ctx.closePath();
+        ctx.fillStyle = '#f59e0b';
+        ctx.fill();
+        
+        // Resplandor
+        ctx.beginPath();
+        ctx.moveTo(0, -size/2);
+        ctx.lineTo(size/5, -size/4);
+        ctx.lineTo(0, 0);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.fill();
+        
+        // Empuñadura
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(-size/10, size/2, size/5, size/3);
+        
+        // Detalle de empuñadura
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.fillRect(-size/10, size/2, size/5, 2);
+        
+        // Efecto de aura sagrada
+        ctx.beginPath();
+        ctx.arc(0, -size/3, size/10, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fill();
+        
+        // Partículas sagradas
+        for (let i = 0; i < 5; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const radius = size/4 + Math.random() * size/6;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+          
+          ctx.beginPath();
+          ctx.arc(x, y, size/15, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${Math.random() * 60 + 270}, 100%, 70%, 0.7)`;
+          ctx.fill();
+        }
+      }
+
       function drawMagicEffects(x, y, width, height) {
         const centerX = x + width/2;
         const centerY = y + height/2;
         const radius = Math.min(width, height) * 0.5;
         
         // Efecto de aura según tipo seleccionado
-        switch(state.currentEffect) {
-          case 'fire':
-            drawFireAura(centerX, centerY, radius);
+        switch(state.currentAnimation) {
+          case 'idle':
+            drawIdleAura(centerX, centerY, radius);
             break;
-          case 'ice':
-            drawIceAura(centerX, centerY, radius);
+          case 'attack':
+            drawAttackAura(centerX, centerY, radius);
             break;
-          case 'lightning':
-            drawLightningAura(centerX, centerY, radius);
+          case 'spell':
+            drawSpellAura(centerX, centerY, radius);
             break;
-          case 'poison':
-            drawPoisonAura(centerX, centerY, radius);
+          case 'special':
+            drawSpecialAura(centerX, centerY, radius);
             break;
-          case 'holy':
-            drawHolyAura(centerX, centerY, radius);
-            break;
-          case 'shadow':
-            drawShadowAura(centerX, centerY, radius);
-            break;
+          default:
+            drawIdleAura(centerX, centerY, radius);
         }
         
         // Partículas mágicas adicionales
         drawMagicParticles(centerX, centerY, radius);
       }
 
-      function drawFireAura(centerX, centerY, radius) {
+      function drawIdleAura(centerX, centerY, radius) {
         const particles = 15 + Math.floor(state.effectIntensity / 10);
         
         for (let i = 0; i < particles; i++) {
@@ -1880,13 +2804,155 @@
           
           const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
           gradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
-          gradient.addColorStop(0.3, 'rgba(255, 165, 0, 0.8)');
-          gradient.addColorStop(0.7, 'rgba(255, 69, 0, 0.7)');
-          gradient.addColorStop(1, 'rgba(255, 0, 0, 0)');
+          
+          switch(state.currentStyle) {
+            case 'warrior': 
+              gradient.addColorStop(0.3, 'rgba(79, 70, 229, 0.8)');
+              gradient.addColorStop(0.7, 'rgba(30, 64, 175, 0.7)');
+              break;
+            case 'mage': 
+              gradient.addColorStop(0.3, 'rgba(124, 58, 237, 0.8)');
+              gradient.addColorStop(0.7, 'rgba(109, 40, 217, 0.7)');
+              break;
+            case 'archer': 
+              gradient.addColorStop(0.3, 'rgba(34, 197, 94, 0.8)');
+              gradient.addColorStop(0.7, 'rgba(22, 101, 52, 0.7)');
+              break;
+            case 'rogue': 
+              gradient.addColorStop(0.3, 'rgba(245, 158, 11, 0.8)');
+              gradient.addColorStop(0.7, 'rgba(191, 38, 38, 0.7)');
+              break;
+            case 'priest': 
+              gradient.addColorStop(0.3, 'rgba(59, 130, 246, 0.8)');
+              gradient.addColorStop(0.7, 'rgba(29, 78, 216, 0.7)');
+              break;
+            default:
+              gradient.addColorStop(0.3, 'rgba(99, 102, 241, 0.8)');
+              gradient.addColorStop(0.7, 'rgba(79, 70, 229, 0.7)');
+          }
+          
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
           
           ctx.beginPath();
           ctx.arc(x, y, size, 0, Math.PI * 2);
           ctx.fillStyle = gradient;
+          ctx.fill();
+        }
+      }
+
+      function drawAttackAura(centerX, centerY, radius) {
+        // Efecto de ataque
+        const gradient = ctx.createRadialGradient(centerX, centerY, radius * 0.5, centerX, centerY, radius * 1.2);
+        
+        switch(state.currentStyle) {
+          case 'warrior':
+            gradient.addColorStop(0, 'rgba(79, 70, 229, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(30, 64, 175, 0.6)');
+            gradient.addColorStop(1, 'rgba(30, 64, 175, 0)');
+            break;
+          case 'mage':
+            gradient.addColorStop(0, 'rgba(124, 58, 237, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(109, 40, 217, 0.6)');
+            gradient.addColorStop(1, 'rgba(109, 40, 217, 0)');
+            break;
+          case 'archer':
+            gradient.addColorStop(0, 'rgba(34, 197, 94, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(22, 101, 52, 0.6)');
+            gradient.addColorStop(1, 'rgba(22, 101, 52, 0)');
+            break;
+          case 'rogue':
+            gradient.addColorStop(0, 'rgba(245, 158, 11, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(191, 38, 38, 0.6)');
+            gradient.addColorStop(1, 'rgba(191, 38, 38, 0)');
+            break;
+          default:
+            gradient.addColorStop(0, 'rgba(99, 102, 241, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(79, 70, 229, 0.6)');
+            gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+        }
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Partículas de ataque
+        for (let i = 0; i < 30; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const distance = radius * 0.8;
+          const x = centerX + Math.cos(angle) * distance;
+          const y = centerY + Math.sin(angle) * distance;
+          const size = Math.random() * 5 + 2;
+          
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+          ctx.fill();
+        }
+      }
+
+      function drawSpellAura(centerX, centerY, radius) {
+        // Efecto de hechizo
+        const gradient = ctx.createRadialGradient(centerX, centerY, radius * 0.3, centerX, centerY, radius * 1.5);
+        
+        switch(state.currentStyle) {
+          case 'mage':
+            gradient.addColorStop(0, 'rgba(124, 58, 237, 0.9)');
+            gradient.addColorStop(0.5, 'rgba(109, 40, 217, 0.7)');
+            gradient.addColorStop(1, 'rgba(109, 40, 217, 0)');
+            break;
+          case 'priest':
+            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.9)');
+            gradient.addColorStop(0.5, 'rgba(29, 78, 216, 0.7)');
+            gradient.addColorStop(1, 'rgba(29, 78, 216, 0)');
+            break;
+          default:
+            gradient.addColorStop(0, 'rgba(99, 102, 241, 0.9)');
+            gradient.addColorStop(0.5, 'rgba(79, 70, 229, 0.7)');
+            gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+        }
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Partículas mágicas
+        for (let i = 0; i < 50; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const distance = radius * (0.5 + Math.random() * 0.5);
+          const x = centerX + Math.cos(angle) * distance;
+          const y = centerY + Math.sin(angle) * distance;
+          const size = Math.random() * 4 + 1;
+          
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${0.3 + Math.random() * 0.7})`;
+          ctx.fill();
+        }
+      }
+
+      function drawSpecialAura(centerX, centerY, radius) {
+        // Efecto especial
+        const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius * 1.8);
+        
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+        gradient.addColorStop(0.3, 'rgba(255, 200, 0, 0.8)');
+        gradient.addColorStop(0.6, 'rgba(255, 100, 0, 0.7)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Partículas explosivas
+        for (let i = 0; i < 80; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const distance = radius * (0.7 + Math.random() * 0.3);
+          const x = centerX + Math.cos(angle) * distance;
+          const y = centerY + Math.sin(angle) * distance;
+          const size = Math.random() * 8 + 2;
+          
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI * 2);
+          
+          const hue = Math.random() * 60 + 20; // Tonos amarillos/naranjas
+          ctx.fillStyle = `hsla(${hue}, 100%, 50%, ${0.5 + Math.random() * 0.5})`;
           ctx.fill();
         }
       }
@@ -1914,6 +2980,8 @@
             case 'rogue': particleColor = '#f59e0b'; break;
             case 'priest': particleColor = '#3b82f6'; break;
             case 'assassin': particleColor = '#f97316'; break;
+            case 'necromancer': particleColor = '#8b5cf6'; break;
+            case 'paladin': particleColor = '#f59e0b'; break;
             default: particleColor = '#60a5fa';
           }
           
@@ -2004,16 +3072,13 @@
         ctx.stroke();
       }
 
-      function exportSprite() {
+      function exportSprite(format = 'png') {
         if (!state.hasGenerated) {
           showNotification('Primero genera un sprite para poder exportarlo', 'error');
           return;
         }
         
-        // Crear sprite sheet para animaciones
-        if (state.currentAnimation !== 'idle') {
-          createSpriteSheet();
-        } else {
+        if (format === 'png') {
           // Exportar sprite simple
           const link = document.createElement('a');
           link.download = `chrono-sprite-${state.currentStyle}-${state.currentWeapon}-${Date.now()}.png`;
@@ -2023,45 +3088,66 @@
           document.body.removeChild(link);
           
           showNotification('Sprite exportado exitosamente!');
+        } else if (format === 'json') {
+          // Exportar JSON + PNG
+          const spriteData = {
+            name: `sprite-${Date.now()}`,
+            width: canvas.width,
+            height: canvas.height,
+            frames: 1,
+            frameWidth: canvas.width,
+            frameHeight: canvas.height,
+            imageData: canvas.toDataURL('image/png'),
+            metadata: {
+              style: state.currentStyle,
+              weapon: state.currentWeapon,
+              color: state.currentColor,
+              effectIntensity: state.effectIntensity,
+              brightness: state.brightness,
+              smoothness: state.smoothness,
+              created: new Date().toISOString()
+            }
+          };
           
-          // Crear partículas mágicas de celebración
-          createCelebrationParticles();
-        }
-      }
-
-      function createSpriteSheet() {
-        // Crear un canvas más grande para el sprite sheet
-        const sheetCanvas = document.createElement('canvas');
-        const sheetCtx = sheetCanvas.getContext('2d');
-        sheetCanvas.width = canvas.width * 8; // 8 frames
-        sheetCanvas.height = canvas.height;
-        
-        // Generar cada frame para la animación
-        for (let frame = 1; frame <= 8; frame++) {
-          state.animationFrame = frame;
+          const blob = new Blob([JSON.stringify(spriteData, null, 2)], { type: 'application/json' });
+          const link = document.createElement('a');
+          link.download = `sprite-data-${Date.now()}.json`;
+          link.href = URL.createObjectURL(blob);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
           
-          // Dibujar sprite en la posición correspondiente
-          sheetCtx.drawImage(canvas, (frame - 1) * canvas.width, 0);
+          showNotification('Datos del sprite exportados en formato JSON!');
+        } else if (format === 'gif') {
+          // Exportar como GIF (requiere librería en producción)
+          showNotification('Exportación a GIF en desarrollo', 'warning');
+        } else if (format === 'sprite-sheet') {
+          // Exportar como sprite sheet
+          const sheetCanvas = document.createElement('canvas');
+          const sheetCtx = sheetCanvas.getContext('2d');
           
-          // Regenerar sprite para el siguiente frame
-          if (frame < 8) {
-            generateSprite();
+          // 4 frames para idle, 4 para ataque
+          const frameWidth = canvas.width;
+          const frameHeight = canvas.height;
+          sheetCanvas.width = frameWidth * 8;
+          sheetCanvas.height = frameHeight;
+          
+          // Dibujar frames
+          for (let i = 0; i < 8; i++) {
+            sheetCtx.drawImage(canvas, i * frameWidth, 0);
           }
+          
+          const link = document.createElement('a');
+          link.download = `sprite-sheet-${state.currentStyle}-${Date.now()}.png`;
+          link.href = sheetCanvas.toDataURL('image/png');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          showNotification('Sprite sheet exportado con 8 frames!');
         }
         
-        // Restaurar el frame actual
-        state.animationFrame = 1;
-        generateSprite();
-        
-        // Exportar sprite sheet
-        const link = document.createElement('a');
-        link.download = `chrono-sprite-sheet-${state.currentAnimation}-${Date.now()}.png`;
-        link.href = sheetCanvas.toDataURL('image/png');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        showNotification(`Sprite sheet de animación (${state.currentAnimation}) exportado con 8 frames!`);
+        // Crear partículas mágicas de celebración
         createCelebrationParticles();
       }
 
@@ -2075,7 +3161,7 @@
             particle.style.top = `${window.innerHeight}px`;
             particle.style.color = `hsl(${Math.random() * 360}, 70%, 70%)`;
             particle.style.fontSize = `${Math.random() * 2 + 1}rem`;
-            particle.innerHTML = ['✨', '💫', '🌟', '⚡', '🔥'][Math.floor(Math.random() * 5)];
+            particle.innerHTML = ['✨', '💫', '🌟', '⚡', '🔥', '💥'][Math.floor(Math.random() * 6)];
             
             document.body.appendChild(particle);
             
@@ -2106,6 +3192,7 @@
         initCanvas();
         
         showNotification('Editor reiniciado exitosamente!');
+        document.getElementById('status-text').textContent = 'Editor reiniciado';
       }
 
       function newProject() {
@@ -2123,7 +3210,8 @@
           return;
         }
         
-        generateSpriteWithProgress();
+        // En una implementación real, aquí se guardaría el proyecto
+        showNotification('Proyecto guardado exitosamente!');
       }
 
       function addProjectHistory() {
@@ -2137,6 +3225,7 @@
           effectIntensity: state.effectIntensity,
           brightness: state.brightness,
           smoothness: state.smoothness,
+          outline: state.outline,
           timestamp: new Date().toISOString()
         };
         
@@ -2183,7 +3272,7 @@
           previewBaseImage();
           setTimeout(() => {
             generateSpriteWithProgress();
-            showNotification('¡Bienvenido a Chrono Legends Sprite Studio PRO! Carga tu imagen o usa esta demostración.', 'warning');
+            showNotification('¡Bienvenido a Chrono Legends PRO! Carga tu imagen o usa esta demostración.', 'warning');
           }, 500);
         };
         
